@@ -11,6 +11,10 @@
   --color-surface-card: #FFFDF8;
   --color-surface-hover: #FFF9EE;
   --color-surface-active: #F5EFE0;
+  --color-paper-warm: #FAF7EE;
+  --color-paper-white: #FFFDF8;
+  --color-paper-subtle: #F2EDE0;
+  --color-paper-card: #FFFDF8;
 
   /* Ink Pens & Pencil Outlines */
   --color-ink: #1E2022;                 /* Deep charcoal fountain ink */
@@ -47,6 +51,18 @@
   --color-doodle-orange: #FB923C;       /* Orange marker */
   --color-doodle-orange-light: #FFEDD5;
 
+  /* Highlighter Aliases for Page Consistency */
+  --color-highlighter-yellow: #FFE66D;
+  --color-highlighter-yellow-light: #FFF4B8;
+  --color-highlighter-coral: #FF6B6B;
+  --color-highlighter-coral-light: #FFE2E2;
+  --color-highlighter-mint: #48BB78;
+  --color-highlighter-mint-light: #D1FAE5;
+  --color-highlighter-cyan: #38BDF8;
+  --color-highlighter-cyan-light: #E0F2FE;
+  --color-highlighter-purple: #8B5CF6;
+  --color-highlighter-purple-light: #EDE9FE;
+
   /* Violet & Purple Accents (Preserved aliases) */
   --color-violet-50: #F5F3FF;
   --color-violet-100: #EDE9FE;
@@ -56,6 +72,7 @@
   --color-violet-500: #8B5CF6;
   --color-violet-600: #7C3AED;
   --color-violet-700: #6D28D9;
+  --color-violet-800: #5B21B6;
   --color-violet-900: #4C1D95;
 
   /* Sticky Notes & Tape Tones */
@@ -69,13 +86,17 @@
   /* Semantic Feedback & Status Colors */
   --color-emerald-50: #ECFDF5;
   --color-emerald-100: #D1FAE5;
+  --color-emerald-500: #10B981;
   --color-emerald-600: #059669;
   --color-emerald-700: #047857;
 
   --color-amber-50: #FFFBEB;
   --color-amber-100: #FEF3C7;
+  --color-amber-200: #FDE68A;
+  --color-amber-500: #F59E0B;
   --color-amber-600: #D97706;
   --color-amber-700: #B45309;
+  --color-amber-800: #92400E;
 
   --color-rose-50: #FFF1F2;
   --color-rose-100: #FFE4E6;
@@ -84,6 +105,7 @@
   --color-sky-50: #F0F9FF;
   --color-sky-100: #E0F2FE;
   --color-sky-600: #0284C7;
+  --color-blue-600: #2563EB;
 
   /* Typography Colors */
   --color-text-primary: #1E2022;        /* Dark Charcoal Ink */
@@ -102,12 +124,16 @@
   /* Typography Families */
   --font-doodle: 'Patrick Hand', 'Architects Daughter', cursive;
   --font-handwritten: 'Architects Daughter', 'Patrick Hand', cursive;
+  --font-heading: 'Patrick Hand', 'Architects Daughter', cursive;
+  --font-hand: 'Patrick Hand', 'Architects Daughter', cursive;
+  --font-body: 'Nunito', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-sans: 'Nunito', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Typography Font Scales */
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-md: 1rem;       /* 16px */
   --font-size-base: 1rem;     /* 16px */
   --font-size-lg: 1.125rem;   /* 18px */
   --font-size-xl: 1.25rem;    /* 20px */
@@ -151,6 +177,7 @@
   --shadow-md: 4px 4px 0px #1E2022;
   --shadow-lg: 6px 6px 0px #1E2022;
   --shadow-xl: 8px 8px 0px #1E2022;
+  --shadow-doodle: 3px 3px 0px #1E2022;
   --shadow-violet: 4px 4px 0px #7C3AED;
   --shadow-yellow: 4px 4px 0px #FFE66D;
   --shadow-coral: 4px 4px 0px #FF6B6B;

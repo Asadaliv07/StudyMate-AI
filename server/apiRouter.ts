@@ -16,20 +16,27 @@ export async function handleAiApiRequest(
   res: ServerResponse
 ): Promise<boolean> {
   const url = req.url || '';
-  if (!url.startsWith('/api/ai')) {
+  if (!url.startsWith('/api/ai') && !url.startsWith('/api')) {
     return false;
   }
 
   // Set standard API headers
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
 
-  // Handle GET /api/ai/status or /api/ai/health
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204;
+    res.end();
+    return true;
+  }
+
+  // Handle GET /api/ai/status or /api/status or health
   const isStatusOrHealth =
-    url === '/api/ai/status' ||
-    url.startsWith('/api/ai/status?') ||
-    url === '/api/ai/health' ||
-    url.startsWith('/api/ai/health?');
+    url.includes('status') ||
+    url.includes('health');
 
   if (req.method === 'GET' && isStatusOrHealth) {
     try {
@@ -67,8 +74,8 @@ export async function handleAiApiRequest(
     return true;
   }
 
-  // Route: POST /api/ai/summarize
-  if (url === '/api/ai/summarize' || url.startsWith('/api/ai/summarize?')) {
+  // Route: POST /api/ai/summarize or /api/summarize
+  if (url.includes('summarize')) {
     const notesText = typeof bodyData.notesText === 'string' ? bodyData.notesText : '';
     const title = typeof bodyData.title === 'string' ? bodyData.title : undefined;
     const subject = typeof bodyData.subject === 'string' ? bodyData.subject : undefined;
@@ -109,8 +116,8 @@ export async function handleAiApiRequest(
     return true;
   }
 
-  // Route: POST /api/ai/quiz
-  if (url === '/api/ai/quiz' || url.startsWith('/api/ai/quiz?')) {
+  // Route: POST /api/ai/quiz or /api/quiz
+  if (url.includes('quiz')) {
     const notesText = typeof bodyData.notesText === 'string' ? bodyData.notesText : '';
     const subject = typeof bodyData.subject === 'string' ? bodyData.subject : 'General Studies';
     const requestedCount = typeof bodyData.requestedCount === 'number' ? bodyData.requestedCount : 5;

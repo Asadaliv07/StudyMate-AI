@@ -259,6 +259,20 @@ a:hover {
   box-shadow: 5px 5px 0px var(--color-ink);
 }
 
+/* Ensure outline buttons in dark or colored cards remain crisp and readable */
+.card-navy .btn-outline,
+.pomodoro-station .btn-outline {
+  background-color: var(--color-surface) !important;
+  color: var(--color-ink) !important;
+  border-color: var(--color-ink) !important;
+}
+
+.card-navy .btn-outline:hover,
+.pomodoro-station .btn-outline:hover {
+  background-color: #FAF7EE !important;
+  color: var(--color-ink) !important;
+}
+
 /* Ghost Button */
 .btn-ghost {
   background-color: transparent;

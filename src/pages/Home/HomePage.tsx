@@ -606,7 +606,7 @@ export const HomePage: React.FC = () => {
                   </Button>
                 </Link>
                 <Link to="/summarizer">
-                  <Button variant="outline" size="lg" style={{ color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.2)' }}>
+                  <Button variant="outline" size="lg">
                     Try Notes Summarizer
                   </Button>
                 </Link>

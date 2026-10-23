@@ -892,7 +892,7 @@ export const PlannerPage: React.FC = () => {
 
                 <div className="pomodoro-controls">
                   <Button
-                    variant="accent"
+                    variant="primary"
                     size="sm"
                     onClick={toggleTimer}
                     icon={isTimerRunning ? <Pause size={15} /> : <Play size={15} />}
@@ -903,7 +903,6 @@ export const PlannerPage: React.FC = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => resetTimer(timerMode === 'focus' ? 'break' : 'focus')}
-                    style={{ color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.2)' }}
                   >
                     {timerMode === 'focus' ? '5m Break' : '25m Focus'}
                   </Button>
