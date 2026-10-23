@@ -1,3 +1,9 @@
+/* ==========================================================================
+   Progress & Analytics Styles — Student Doodle & Sketchbook Theme
+   Warm cream paper, ink outlines (2px solid #1E2022), highlighter bars,
+   sticker milestone badges, and notebook log entries.
+   ========================================================================== */
+
 .progress-root {
   padding: var(--space-8) 0 var(--space-16);
 }
@@ -27,9 +33,16 @@
 
 .analytics-card {
   padding: var(--space-6) var(--space-8);
+  border: 2.5px solid var(--color-ink);
+  background: var(--color-surface);
+  border-radius: var(--radius-doodle);
+  box-shadow: var(--shadow-doodle);
+  position: relative;
 }
 
-/* Subject Mastery Bars */
+/* ---------------------------------------------------------------------------
+   Subject Mastery Bars — Highlighter Fill Strips
+   --------------------------------------------------------------------------- */
 .subject-bars-list {
   display: flex;
   flex-direction: column;
@@ -49,52 +62,62 @@
 }
 
 .subject-name {
+  font-family: var(--font-heading);
   font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
 }
 
 .subject-submeta {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  font-family: var(--font-hand);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-ink-light);
 }
 
 .mastery-pct {
-  font-size: var(--font-size-base);
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
   font-weight: 800;
-  color: var(--color-navy-900);
+  color: var(--color-ink);
 }
 
 .progress-track {
-  height: 10px;
-  background-color: var(--color-bg-subtle);
+  height: 12px;
+  background-color: var(--color-paper-warm);
+  border: 1.5px solid var(--color-ink);
   border-radius: var(--radius-full);
   overflow: hidden;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
   transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  border-right: 1.5px solid var(--color-ink);
 }
 
-/* Weak points */
+/* Weak points / Recommendations */
 .weak-points-card {
   background: var(--color-surface);
 }
 
 .weak-points-title {
+  font-family: var(--font-heading);
   font-size: var(--font-size-md);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
   display: flex;
   align-items: center;
   gap: var(--space-2);
 }
 
 .weak-points-sub {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-ink-light);
   margin-top: 2px;
   margin-bottom: var(--space-4);
 }
@@ -109,18 +132,21 @@
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
-  padding: var(--space-3);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-paper-warm);
+  border: 1.5px solid var(--color-ink);
+  border-radius: var(--radius-doodle);
+  box-shadow: 2px 2px 0px var(--color-ink);
 }
 
 .rec-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-family: var(--font-hand);
+  font-size: 0.72rem;
+  font-weight: 800;
   text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: var(--radius-xs);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--color-ink);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -130,28 +156,37 @@
 }
 
 .rec-title {
+  font-family: var(--font-heading);
   font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
 }
 
 .rec-desc {
+  font-family: var(--font-body);
   font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-  line-height: 1.4;
+  color: var(--color-ink);
+  line-height: 1.45;
   margin-top: 2px;
 }
 
-/* Weekly Chart */
+/* ---------------------------------------------------------------------------
+   Weekly Study Hours Chart — Doodle Graph Paper
+   --------------------------------------------------------------------------- */
 .weekly-chart {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: var(--space-2);
-  height: 180px;
+  height: 190px;
   padding-top: var(--space-6);
   margin-bottom: var(--space-4);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 2px solid var(--color-ink);
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 28px,
+    rgba(30, 32, 34, 0.05) 29px
+  );
 }
 
 .chart-column {
@@ -163,17 +198,19 @@
 }
 
 .column-top-val {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--color-navy-800);
+  font-family: var(--font-hand);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-ink);
   margin-bottom: 4px;
 }
 
 .column-track {
   flex: 1;
-  width: 24px;
-  background-color: var(--color-bg-subtle);
-  border-radius: var(--radius-sm);
+  width: 28px;
+  background-color: var(--color-paper-warm);
+  border: 1.5px solid var(--color-ink);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -181,22 +218,33 @@
 
 .column-fill {
   width: 100%;
-  background: var(--gradient-accent);
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--color-highlighter-yellow);
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
   transition: height 0.6s ease;
+  border-top: 1.5px solid var(--color-ink);
+}
+
+.chart-column:nth-child(even) .column-fill {
+  background: var(--color-highlighter-mint);
+}
+
+.chart-column:nth-child(3n) .column-fill {
+  background: var(--color-highlighter-cyan);
 }
 
 .column-day {
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: var(--color-navy-900);
+  font-family: var(--font-hand);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-ink);
   margin-top: 6px;
 }
 
 .column-retention {
-  font-size: 0.65rem;
-  color: var(--color-emerald-700);
-  font-weight: 600;
+  font-family: var(--font-hand);
+  font-size: 0.72rem;
+  color: #14532D;
+  font-weight: 800;
 }
 
 .chart-legend {
@@ -204,8 +252,10 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-6);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-ink-light);
 }
 
 .legend-item {
@@ -215,16 +265,20 @@
 }
 
 .legend-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
+  border: 1px solid var(--color-ink);
 }
 
-/* Milestones */
+/* ---------------------------------------------------------------------------
+   Milestones & Badges — Collected Stickers
+   --------------------------------------------------------------------------- */
 .milestones-title {
+  font-family: var(--font-heading);
   font-size: var(--font-size-md);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
   margin-bottom: var(--space-4);
 }
 
@@ -235,63 +289,75 @@
 }
 
 .milestone-badge-box {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  background: var(--color-paper-warm);
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-doodle);
   padding: var(--space-3);
   text-align: center;
+  box-shadow: 2px 2px 0px var(--color-ink);
+  transition: transform 0.15s ease;
+}
+
+.milestone-badge-box:hover {
+  transform: scale(1.04) rotate(-1deg);
 }
 
 .milestone-emoji {
-  font-size: 20px;
+  font-size: 24px;
   display: block;
   margin-bottom: 4px;
 }
 
 .milestone-name {
+  font-family: var(--font-heading);
   font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
 }
 
 .milestone-date {
-  font-size: 0.65rem;
-  color: var(--color-text-muted);
+  font-family: var(--font-hand);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-ink-light);
 }
 
 /* Timeframe Toggle Pills */
 .timeframe-toggle-pills {
   display: flex;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  background-color: var(--color-paper-warm);
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-doodle);
   padding: 3px;
   gap: 3px;
+  box-shadow: 1.5px 1.5px 0px var(--color-ink);
 }
 
 .time-pill {
   padding: 0.35rem 0.85rem;
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  font-weight: 800;
   border: none;
   background: none;
   border-radius: var(--radius-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-ink-light);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .time-pill:hover {
-  color: var(--color-navy-900);
+  color: var(--color-ink);
 }
 
 .time-pill.active {
-  background-color: var(--color-surface);
-  color: var(--color-violet-700);
-  box-shadow: var(--shadow-xs);
+  background-color: var(--color-ink);
+  color: #ffffff;
 }
 
-/* Completed Sessions */
+/* ---------------------------------------------------------------------------
+   Completed Sessions & Quiz History — Ruled Notebook Log
+   --------------------------------------------------------------------------- */
 .completed-sessions-list {
   display: flex;
   flex-direction: column;
@@ -303,15 +369,17 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--space-3) var(--space-4);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  transition: border-color var(--transition-fast);
+  background: var(--color-paper-warm);
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px var(--color-ink);
+  transition: all var(--transition-fast);
 }
 
 .completed-session-row:hover {
-  border-color: var(--color-violet-200);
-  background: var(--color-surface);
+  background-color: var(--color-sticky-yellow);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--color-ink);
 }
 
 .session-left {
@@ -321,14 +389,17 @@
 }
 
 .session-topic {
+  font-family: var(--font-heading);
   font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
 }
 
 .session-date {
-  font-size: 0.65rem;
-  color: var(--color-text-muted);
+  font-family: var(--font-hand);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-ink-light);
   margin-top: 2px;
 }
 
@@ -339,8 +410,10 @@
 }
 
 .session-duration {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-family: var(--font-hand);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--color-ink);
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -358,15 +431,17 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--space-3) var(--space-4);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  transition: border-color var(--transition-fast);
+  background: var(--color-paper-warm);
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0px var(--color-ink);
+  transition: all var(--transition-fast);
 }
 
 .quiz-history-row:hover {
-  border-color: var(--color-violet-200);
-  background: var(--color-surface);
+  background-color: var(--color-sticky-yellow);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--color-ink);
 }
 
 .qh-info {
@@ -375,14 +450,17 @@
 }
 
 .qh-title {
+  font-family: var(--font-heading);
   font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
 }
 
 .qh-meta {
-  font-size: 0.65rem;
-  color: var(--color-text-muted);
+  font-family: var(--font-hand);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-ink-light);
   margin-top: 2px;
 }
 
@@ -393,9 +471,10 @@
 }
 
 .qh-score {
-  font-size: var(--font-size-sm);
+  font-family: var(--font-hand);
+  font-size: var(--font-size-base);
   font-weight: 800;
-  color: var(--color-navy-900);
+  color: var(--color-ink);
 }
 
 .insufficient-data-box {
@@ -405,27 +484,31 @@
   justify-content: center;
   text-align: center;
   padding: var(--space-8) var(--space-4);
-  background-color: var(--color-bg);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-lg);
+  background-color: var(--color-paper-warm);
+  border: 2px dashed var(--color-ink);
+  border-radius: var(--radius-doodle);
   gap: var(--space-2);
 }
 
 .insufficient-data-box h4 {
+  font-family: var(--font-heading);
   font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
   margin-top: var(--space-1);
 }
 
 .insufficient-data-box p {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-family: var(--font-hand);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-ink-light);
   line-height: 1.5;
   max-width: 420px;
   margin-bottom: var(--space-2);
 }
 
+/* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .progress-kpi-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -445,4 +528,3 @@
     gap: var(--space-2);
   }
 }
-

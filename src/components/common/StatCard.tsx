@@ -16,37 +16,55 @@ export const StatCard: React.FC<StatCardProps> = ({
   change,
   changeType = 'positive',
   icon,
-  iconBg = 'var(--color-violet-50)',
+  iconBg = 'var(--color-doodle-yellow-light)',
 }) => {
   const changeColor =
     changeType === 'positive'
-      ? 'var(--color-emerald-600)'
+      ? '#059669'
       : changeType === 'negative'
-      ? 'var(--color-rose-600)'
-      : 'var(--color-text-muted)';
+      ? '#E11D48'
+      : 'var(--color-ink-light)';
 
   return (
-    <Card className="stat-card">
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+    <Card className="stat-card" style={{ overflow: 'visible', position: 'relative' }}>
+      {/* Mini Washi Tape on top edge */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-10px',
+          right: '24px',
+          width: '60px',
+          height: '18px',
+          backgroundColor: 'rgba(255, 230, 109, 0.75)',
+          borderLeft: '1.5px dashed rgba(30, 32, 34, 0.25)',
+          borderRight: '1.5px dashed rgba(30, 32, 34, 0.25)',
+          transform: 'rotate(2deg)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--space-3)' }}>
         <div>
           <span
             style={{
-              fontSize: 'var(--font-size-xs)',
-              fontWeight: 600,
+              fontFamily: 'var(--font-doodle)',
+              fontSize: '1.05rem',
+              fontWeight: 700,
               textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: 'var(--color-text-muted)',
+              letterSpacing: '0.04em',
+              color: 'var(--color-ink-light)',
             }}
           >
             {title}
           </span>
           <div
             style={{
-              fontSize: 'var(--font-size-3xl)',
-              fontWeight: 800,
-              color: 'var(--color-navy-900)',
+              fontFamily: 'var(--font-doodle)',
+              fontSize: '2.5rem',
+              fontWeight: 700,
+              color: 'var(--color-ink)',
               marginTop: 'var(--space-1)',
-              lineHeight: 1.1,
+              lineHeight: 1,
             }}
           >
             {value}
@@ -54,8 +72,9 @@ export const StatCard: React.FC<StatCardProps> = ({
           {change && (
             <p
               style={{
-                fontSize: 'var(--font-size-xs)',
-                fontWeight: 500,
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.85rem',
+                fontWeight: 700,
                 color: changeColor,
                 marginTop: 'var(--space-2)',
                 display: 'flex',
@@ -69,15 +88,18 @@ export const StatCard: React.FC<StatCardProps> = ({
         </div>
         <div
           style={{
-            width: '44px',
-            height: '44px',
-            borderRadius: 'var(--radius-md)',
+            width: '46px',
+            height: '46px',
+            borderRadius: '12px',
             backgroundColor: iconBg,
+            border: '2px solid var(--color-ink)',
+            boxShadow: '2px 2px 0px var(--color-ink)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--color-violet-600)',
+            color: 'var(--color-ink)',
             flexShrink: 0,
+            transform: 'rotate(-2deg)',
           }}
         >
           {icon}

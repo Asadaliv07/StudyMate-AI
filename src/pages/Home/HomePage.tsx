@@ -20,6 +20,13 @@ import {
 import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
 import { Card } from '../../components/common/Card';
+import {
+  DoodlePencil,
+  DoodleArrow,
+  DoodleSquiggle,
+  DoodleStar,
+  DoodleCoffee,
+} from '../../components/common/DoodleIcons';
 import { MOCK_STUDENT } from '../../utils/constants';
 import './HomePage.css';
 
@@ -82,27 +89,31 @@ export const HomePage: React.FC = () => {
       <section className="hero-section">
         <div className="container hero-container">
           <div className="hero-content">
-            <div className="hero-badge-wrap">
-              <Badge variant="violet" icon={<Sparkles size={14} />}>
-                Next-Gen Academic Intelligence 2.0
+            <div className="hero-badge-wrap" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Badge variant="violet" icon={<DoodlePencil size={16} />}>
+                Creative Doodle Edition • Notebook AI
               </Badge>
+              <DoodleStar size={20} color="#FFE66D" />
             </div>
 
             <h1 className="hero-title">
               Master Difficult Subjects with Your Personal{' '}
-              <span className="text-gradient">Academic AI Co-Pilot</span>
+              <span className="text-gradient">Doodle Study Co-Pilot</span>
             </h1>
 
+            <div style={{ margin: '4px 0 12px' }}>
+              <DoodleSquiggle width={140} height={14} color="#FFE66D" />
+            </div>
+
             <p className="hero-subtitle">
-              Transform dense textbooks and lecture notes into spaced-repetition study
-              schedules, crisp executive summaries, high-yield practice quizzes, and
-              cognitive retention tracking.
+              Turn messy lecture notes and complex textbooks into fun spaced-repetition schedules,
+              hand-drawn style study summaries, interactive practice quizzes, and cognitive retention charts.
             </p>
 
             <div className="hero-cta-group">
               <Link to="/dashboard">
                 <Button variant="accent" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
-                  Enter Study Workspace
+                  Open Study Notebook 📓
                 </Button>
               </Link>
               <Link to="/planner">
@@ -110,16 +121,19 @@ export const HomePage: React.FC = () => {
                   Explore Study Planner
                 </Button>
               </Link>
+              <div style={{ display: 'none', position: 'absolute', right: '-80px', top: '-15px' }} className="doodle-hero-arrow">
+                <DoodleArrow size={42} color="#1E2022" />
+              </div>
             </div>
 
             <div className="hero-social-proof">
               <div className="social-avatars">
-                <span className="avatar-chip">🎓</span>
-                <span className="avatar-chip">🔬</span>
-                <span className="avatar-chip">⚡</span>
+                <span className="avatar-chip">📝</span>
+                <span className="avatar-chip" title="Focus coffee"><DoodleCoffee size={16} color="#1E2022" /></span>
+                <span className="avatar-chip">🎨</span>
               </div>
               <p className="social-text">
-                Designed for undergraduate & graduate scholars from Stanford, MIT, and beyond.
+                Designed for students, thinkers, and visual learners worldwide.
               </p>
             </div>
           </div>
@@ -127,6 +141,8 @@ export const HomePage: React.FC = () => {
           {/* Hero Preview Card */}
           <div className="hero-visual">
             <Card variant="navy" className="hero-dashboard-preview">
+              {/* Cute Washi Tape on Top */}
+              <div className="washi-tape" />
               <div className="preview-header">
                 <div className="preview-student">
                   <div className="preview-avatar">RS</div>

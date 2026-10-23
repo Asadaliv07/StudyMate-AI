@@ -157,14 +157,15 @@
   display: flex;
   flex-direction: column;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-ink);
   background: var(--color-surface);
+  border-radius: var(--radius-doodle);
+  box-shadow: 4px 4px 0px var(--color-ink);
 }
 
 .planner-subject-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--color-violet-200);
+  transform: translate(-2px, -2px) rotate(-0.5deg);
+  box-shadow: 6px 6px 0px var(--color-ink);
 }
 
 .planner-subject-card-header {
@@ -349,9 +350,9 @@
 
 /* Dashed Add Subject Card */
 .add-subject-dashed-card {
-  border: 2px dashed var(--color-border);
-  background: transparent;
-  border-radius: var(--radius-lg);
+  border: 2.5px dashed var(--color-ink);
+  background: #FAF7EE;
+  border-radius: var(--radius-doodle);
   padding: var(--space-8) var(--space-5);
   display: flex;
   flex-direction: column;
@@ -359,74 +360,78 @@
   justify-content: center;
   text-align: center;
   cursor: pointer;
+  box-shadow: 3px 3px 0px rgba(30, 32, 34, 0.15);
   transition: all var(--transition-fast);
   min-height: 220px;
 }
 
 .add-subject-dashed-card:hover {
-  border-color: var(--color-violet-400);
-  background-color: var(--color-violet-50);
+  border-color: var(--color-ink);
+  background-color: var(--color-doodle-yellow-light);
+  transform: translate(-2px, -2px) rotate(0.8deg);
+  box-shadow: 5px 5px 0px var(--color-ink);
 }
 
 .dashed-plus-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-violet-600);
+  border: 2px solid var(--color-ink);
+  color: var(--color-ink);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-3);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 2px 2px 0px var(--color-ink);
   transition: transform var(--transition-fast);
 }
 
 .add-subject-dashed-card:hover .dashed-plus-icon {
-  transform: scale(1.08);
-  border-color: var(--color-violet-300);
+  transform: scale(1.1) rotate(5deg);
+  background-color: var(--color-doodle-yellow);
 }
 
 .dashed-title {
-  font-size: var(--font-size-sm);
+  font-family: var(--font-doodle);
+  font-size: 1.35rem;
   font-weight: 700;
-  color: var(--color-navy-900);
+  color: var(--color-ink);
   margin-bottom: var(--space-1);
 }
 
 .dashed-sub {
-  font-size: var(--font-size-xs);
+  font-size: 0.85rem;
   color: var(--color-text-secondary);
   max-width: 240px;
   line-height: 1.4;
 }
 
 /* ==========================================================================
-   Feasibility Banner
+   Feasibility Banner — Hand-Drawn Notebook Memo
    ========================================================================== */
 .feasibility-card {
   padding: var(--space-5) var(--space-6);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-doodle);
   margin-bottom: var(--space-8);
   animation: fadeIn 0.3s ease-out;
-  border-width: 1px;
-  border-style: solid;
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 5px 5px 0px var(--color-ink);
 }
 
 .feasibility-feasible {
-  background-color: var(--color-emerald-50);
-  border-color: var(--color-emerald-100);
+  background-color: var(--color-doodle-mint-light);
+  border-color: var(--color-ink);
 }
 
 .feasibility-tight {
-  background-color: var(--color-amber-50);
-  border-color: var(--color-amber-200);
+  background-color: var(--color-sticky-yellow);
+  border-color: var(--color-ink);
 }
 
 .feasibility-unrealistic {
-  background-color: var(--color-rose-50);
-  border-color: var(--color-rose-200);
+  background-color: var(--color-doodle-coral-light);
+  border-color: var(--color-ink);
 }
 
 .feasibility-header-row {
@@ -734,30 +739,33 @@
   align-items: flex-start;
   gap: var(--space-4);
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-ink);
+  border-radius: 14px;
   background-color: var(--color-surface);
+  box-shadow: 2.5px 2.5px 0px var(--color-ink);
   transition: all var(--transition-fast);
 }
 
 .session-row-item:hover {
-  border-color: var(--color-violet-300);
-  background-color: var(--color-surface-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--color-ink);
+  background-color: #FFFDF8;
 }
 
 .session-row-item.session-completed {
-  background-color: var(--color-bg-subtle);
-  border-color: var(--color-border);
-  opacity: 0.65;
+  background-color: var(--color-doodle-mint-light);
+  border-color: var(--color-ink);
+  box-shadow: 1.5px 1.5px 0px var(--color-ink);
+  opacity: 0.85;
 }
 
 .session-checkbox {
-  width: 22px;
-  height: 22px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--color-text-muted);
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 2px solid var(--color-ink);
   background: var(--color-surface);
-  color: #FFFFFF;
+  color: var(--color-ink);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -765,16 +773,17 @@
   margin-top: 3px;
   flex-shrink: 0;
   padding: 0;
+  box-shadow: 1.5px 1.5px 0px var(--color-ink);
   transition: all var(--transition-fast);
 }
 
 .session-checkbox:hover {
-  border-color: var(--color-violet-600);
+  background-color: var(--color-doodle-yellow-light);
 }
 
 .session-checkbox.checked {
-  background-color: var(--color-emerald-600);
-  border-color: var(--color-emerald-600);
+  background-color: var(--color-doodle-mint);
+  border-color: var(--color-ink);
   color: #FFFFFF;
 }
 
@@ -862,9 +871,13 @@
 .pomodoro-station {
   padding: var(--space-6);
   text-align: center;
-  background: var(--gradient-navy);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
+  background: var(--color-doodle-yellow);
+  color: var(--color-ink);
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-doodle);
+  box-shadow: 6px 6px 0px var(--color-ink);
+  position: relative;
+  transform: rotate(-0.8deg);
 }
 
 .pomodoro-header {
@@ -872,23 +885,27 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px dashed var(--color-ink);
 }
 
 .pomodoro-label {
-  font-size: var(--font-size-xs);
+  font-family: var(--font-doodle);
+  font-size: 1.15rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-ink);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .pomodoro-digits {
-  font-family: var(--font-mono);
-  font-size: var(--font-size-5xl);
-  font-weight: 800;
-  color: #FFFFFF;
-  margin: var(--space-2) 0 var(--space-6);
-  letter-spacing: 0.05em;
+  font-family: var(--font-doodle);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: var(--space-2) 0 var(--space-5);
+  line-height: 1;
+  letter-spacing: 0.04em;
 }
 
 .pomodoro-controls {
@@ -899,21 +916,24 @@
 }
 
 .btn-icon-only {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  box-shadow: 2px 2px 0px var(--color-ink);
   transition: all var(--transition-fast);
 }
 
 .btn-icon-only:hover {
-  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--color-ink);
+  background-color: #FAF7EE;
 }
 
 .exams-card {

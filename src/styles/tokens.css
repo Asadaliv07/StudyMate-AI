@@ -1,19 +1,53 @@
 :root {
   /* ==========================================================================
-     Academic Color Palette
-     Deep Navy Primary + Subtle Violet Accents + Clean Light Backgrounds
+     StudyMate AI — Hand-Drawn Doodle & Sketchbook Theme
+     Creative Student Notebook • Tactile Paper • Hand-Lettered Highlights
      ========================================================================== */
-  
-  /* Primary Deep Navy */
-  --color-navy-950: #060b17;
-  --color-navy-900: #0B132A;
-  --color-navy-850: #101b3a;
-  --color-navy-800: #162447;
-  --color-navy-700: #1f3363;
-  --color-navy-600: #2d4784;
-  --color-navy-500: #3f60ab;
 
-  /* Subtle Violet & Purple Accents */
+  /* Paper & Notebook Foundations */
+  --color-bg: #FAF7EE;                  /* Warm creamy sketchbook paper */
+  --color-bg-subtle: #F2EDE0;           /* Shaded craft paper tone */
+  --color-surface: #FFFDF8;             /* Clean notepad sheet */
+  --color-surface-card: #FFFDF8;
+  --color-surface-hover: #FFF9EE;
+  --color-surface-active: #F5EFE0;
+
+  /* Ink Pens & Pencil Outlines */
+  --color-ink: #1E2022;                 /* Deep charcoal fountain ink */
+  --color-ink-dark: #121314;            /* Black pen */
+  --color-ink-light: #4A5056;           /* Graphite pencil */
+  --color-ink-muted: #7A8288;           /* Faint margin lines */
+  --color-border: #1E2022;              /* 2px / 2.5px hand-drawn outlines */
+  --color-border-subtle: #E0D9C8;       /* Faint graph paper lines */
+  --color-border-hover: #121314;
+  --color-border-focus: #7C3AED;
+
+  /* Classic Navy mapped to Rich Ink for full compatibility */
+  --color-navy-950: #121314;
+  --color-navy-900: #1E2022;
+  --color-navy-850: #26292C;
+  --color-navy-800: #2F3337;
+  --color-navy-700: #3E4348;
+  --color-navy-600: #545B62;
+  --color-navy-500: #6B737A;
+
+  /* Doodle Highlighter Palette */
+  --color-doodle-yellow: #FFE66D;       /* Neon study highlighter yellow */
+  --color-doodle-yellow-light: #FFF4B8;
+  --color-doodle-coral: #FF6B6B;        /* Marker coral red */
+  --color-doodle-coral-light: #FFE2E2;
+  --color-doodle-mint: #48BB78;         /* Mint marker green */
+  --color-doodle-mint-light: #D1FAE5;
+  --color-doodle-cyan: #38BDF8;         /* Felt-tip sky blue */
+  --color-doodle-cyan-light: #E0F2FE;
+  --color-doodle-purple: #8B5CF6;       /* Violet highlighter */
+  --color-doodle-purple-light: #EDE9FE;
+  --color-doodle-pink: #F472B6;         /* Bubblegum highlighter */
+  --color-doodle-pink-light: #FCE7F3;
+  --color-doodle-orange: #FB923C;       /* Orange marker */
+  --color-doodle-orange-light: #FFEDD5;
+
+  /* Violet & Purple Accents (Preserved aliases) */
   --color-violet-50: #F5F3FF;
   --color-violet-100: #EDE9FE;
   --color-violet-200: #DDD6FE;
@@ -24,22 +58,15 @@
   --color-violet-700: #6D28D9;
   --color-violet-900: #4C1D95;
 
-  /* Accent Gradients */
-  --gradient-navy: linear-gradient(135deg, #0B132A 0%, #162447 100%);
-  --gradient-accent: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #4F46E5 100%);
-  --gradient-hero: linear-gradient(180deg, rgba(245, 243, 255, 0.8) 0%, rgba(248, 250, 252, 1) 100%);
-  --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #FAFAFD 100%);
-  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
+  /* Sticky Notes & Tape Tones */
+  --color-sticky-yellow: #FEF08A;
+  --color-sticky-blue: #BAE6FD;
+  --color-sticky-pink: #FBCFE8;
+  --color-sticky-green: #BBF7D0;
+  --color-sticky-orange: #FED7AA;
+  --color-washi-tape: rgba(255, 230, 109, 0.65);
 
-  /* Light Neutral Foundations */
-  --color-bg: #F8FAFC;
-  --color-bg-subtle: #F1F5F9;
-  --color-surface: #FFFFFF;
-  --color-surface-card: #FFFFFF;
-  --color-surface-hover: #F8FAFC;
-  --color-surface-active: #F1F5F9;
-
-  /* Semantic Feedback & Academic Status Colors */
+  /* Semantic Feedback & Status Colors */
   --color-emerald-50: #ECFDF5;
   --color-emerald-100: #D1FAE5;
   --color-emerald-600: #059669;
@@ -58,22 +85,25 @@
   --color-sky-100: #E0F2FE;
   --color-sky-600: #0284C7;
 
-  /* Borders & Dividers */
-  --color-border: #E2E8F0;
-  --color-border-subtle: #EDF2F7;
-  --color-border-hover: #CBD5E1;
-  --color-border-focus: #8B5CF6;
-
   /* Typography Colors */
-  --color-text-primary: #0F172A;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94A3B8;
+  --color-text-primary: #1E2022;        /* Dark Charcoal Ink */
+  --color-text-secondary: #4A5056;      /* Graphite */
+  --color-text-muted: #7A8288;          /* Faint guide pencil */
   --color-text-inverse: #FFFFFF;
   --color-text-accent: #7C3AED;
 
-  /* Typography Font Families */
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Gradients */
+  --gradient-navy: linear-gradient(135deg, #1E2022 0%, #2F3337 100%);
+  --gradient-accent: linear-gradient(135deg, #FFE66D 0%, #FFD166 100%);
+  --gradient-hero: linear-gradient(180deg, #FAF7EE 0%, #F5EFE0 100%);
+  --gradient-card: linear-gradient(180deg, #FFFDF8 0%, #FAF7EE 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(255, 230, 109, 0.35) 0%, transparent 70%);
+
+  /* Typography Families */
+  --font-doodle: 'Patrick Hand', 'Architects Daughter', cursive;
+  --font-handwritten: 'Architects Daughter', 'Patrick Hand', cursive;
+  --font-sans: 'Nunito', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Typography Font Scales */
   --font-size-xs: 0.75rem;    /* 12px */
@@ -88,48 +118,56 @@
   --font-size-6xl: 3.75rem;   /* 60px */
 
   /* Spacing Scale */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.25rem;   /* 20px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
-  --space-24: 6rem;     /* 96px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
 
-  /* Rounded Borders */
+  /* Hand-Drawn Borders & Rounded Corners */
   --radius-xs: 4px;
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-2xl: 24px;
-  --radius-3xl: 32px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+  --radius-3xl: 36px;
   --radius-full: 9999px;
+  /* Organic Hand-Drawn Sketch Curves */
+  --radius-doodle: 255px 15px 225px 15px/15px 225px 15px 255px;
+  --radius-doodle-alt: 20px 255px 20px 255px/255px 20px 255px 20px;
+  --radius-doodle-badge: 15px 225px 15px 255px/255px 15px 225px 15px;
 
-  /* Restrained, Crisp Shadows */
-  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
-  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.03);
-  --shadow-xl: 0 20px 38px -6px rgba(15, 23, 42, 0.1), 0 6px 12px -3px rgba(15, 23, 42, 0.04);
-  --shadow-violet: 0 8px 24px -4px rgba(124, 58, 237, 0.22);
-  --shadow-inner: inset 0 2px 4px rgba(15, 23, 42, 0.04);
+  /* Tactile Hand-Drawn Offset Drop Shadows */
+  --shadow-xs: 2px 2px 0px #1E2022;
+  --shadow-sm: 3px 3px 0px #1E2022;
+  --shadow-md: 4px 4px 0px #1E2022;
+  --shadow-lg: 6px 6px 0px #1E2022;
+  --shadow-xl: 8px 8px 0px #1E2022;
+  --shadow-violet: 4px 4px 0px #7C3AED;
+  --shadow-yellow: 4px 4px 0px #FFE66D;
+  --shadow-coral: 4px 4px 0px #FF6B6B;
+  --shadow-mint: 4px 4px 0px #48BB78;
+  --shadow-cyan: 4px 4px 0px #38BDF8;
+  --shadow-inner: inset 2px 2px 0px rgba(30, 32, 34, 0.08);
 
   /* Transitions & Easings */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bouncy: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Layout Max Widths */
   --layout-max-width: 1280px;
   --layout-content-width: 1120px;
   --layout-narrow-width: 800px;
-  --header-height: 72px;
+  --header-height: 76px;
   --sidebar-width: 270px;
   --sidebar-collapsed-width: 80px;
 

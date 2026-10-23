@@ -31,23 +31,26 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
         textAlign: 'center',
         padding: 'var(--space-10) var(--space-6)',
         backgroundColor: 'var(--color-surface)',
-        border: '1px dashed var(--color-border)',
-        borderRadius: 'var(--radius-xl)',
+        border: '2px dashed var(--color-ink)',
+        borderRadius: 'var(--radius-doodle)',
         margin: 'var(--space-4) 0',
+        boxShadow: 'var(--shadow-doodle)',
       }}
     >
       {icon && (
         <div
           style={{
-            width: '56px',
-            height: '56px',
-            borderRadius: 'var(--radius-xl)',
-            backgroundColor: 'var(--color-bg-subtle)',
-            color: 'var(--color-text-muted)',
+            width: '60px',
+            height: '60px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--color-highlighter-yellow)',
+            border: '2px solid var(--color-ink)',
+            color: 'var(--color-ink)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             marginBottom: 'var(--space-4)',
+            boxShadow: '2px 2px 0px var(--color-ink)',
           }}
         >
           {icon}
@@ -55,9 +58,10 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
       )}
       <h3
         style={{
+          fontFamily: 'var(--font-heading)',
           fontSize: 'var(--font-size-lg)',
-          fontWeight: 700,
-          color: 'var(--color-navy-900)',
+          fontWeight: 800,
+          color: 'var(--color-ink)',
           marginBottom: 'var(--space-2)',
         }}
       >
@@ -65,8 +69,10 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
       </h3>
       <p
         style={{
-          fontSize: 'var(--font-size-sm)',
-          color: 'var(--color-text-secondary)',
+          fontFamily: 'var(--font-hand)',
+          fontSize: '1rem',
+          fontWeight: 600,
+          color: 'var(--color-ink-light)',
           maxWidth: '420px',
           lineHeight: 1.5,
           marginBottom: actionLabel ? 'var(--space-6)' : 0,

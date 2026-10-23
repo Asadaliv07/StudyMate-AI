@@ -1,7 +1,7 @@
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(6, 11, 23, 0.6);
+  background-color: rgba(30, 32, 34, 0.55);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: var(--z-modal-backdrop);
@@ -15,9 +15,9 @@
 .modal-container {
   width: 100%;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-xl);
+  border: 2.5px solid var(--color-ink);
+  border-radius: 20px 255px 20px 255px/255px 20px 255px 20px;
+  box-shadow: 8px 8px 0px var(--color-ink);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -32,7 +32,7 @@
 @keyframes scaleUpModal {
   from {
     opacity: 0;
-    transform: scale(0.96) translateY(8px);
+    transform: scale(0.95) translateY(10px);
   }
   to {
     opacity: 1;
@@ -45,43 +45,49 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: var(--space-6) var(--space-6) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 2px dashed var(--color-ink);
+  background-color: #FFFDF8;
 }
 
 .modal-title {
-  font-size: var(--font-size-xl);
+  font-family: var(--font-doodle);
+  font-size: 1.65rem;
   font-weight: 700;
-  color: var(--color-navy-900);
+  color: var(--color-ink);
 }
 
 .modal-subtitle {
-  font-size: var(--font-size-xs);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
   color: var(--color-text-secondary);
   margin-top: 2px;
 }
 
 .modal-close-btn {
-  background: none;
-  border: none;
-  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  color: var(--color-ink);
   cursor: pointer;
   padding: var(--space-1);
-  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 2px 2px 0px var(--color-ink);
   transition: all var(--transition-fast);
 }
 
 .modal-close-btn:hover {
-  background-color: var(--color-bg-subtle);
-  color: var(--color-navy-900);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--color-ink);
+  background-color: var(--color-doodle-yellow-light);
 }
 
 .modal-body {
   padding: var(--space-6);
   max-height: calc(85vh - 140px);
   overflow-y: auto;
+  background-color: #FFFDF8;
 }
 
 .modal-footer {
@@ -90,6 +96,6 @@
   justify-content: flex-end;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-6);
-  background-color: var(--color-bg);
-  border-top: 1px solid var(--color-border);
+  background-color: #FAF7EE;
+  border-top: 2px dashed var(--color-ink);
 }

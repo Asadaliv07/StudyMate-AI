@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
           </div>
           <div className="brand-text">
             <span className="brand-title">{APP_CONFIG.name}</span>
-            <span className="brand-edition">ACADEMIC</span>
+            <span className="brand-edition">✏️ DOODLE NOTEBOOK</span>
           </div>
         </Link>
 

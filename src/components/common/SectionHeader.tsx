@@ -40,11 +40,27 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
             <Badge variant={badgeVariant}>{badgeText}</Badge>
           </div>
         )}
-        <h2 style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 700, color: 'var(--color-navy-900)' }}>
+        <h2
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'var(--font-size-2xl)',
+            fontWeight: 800,
+            color: 'var(--color-ink)',
+            letterSpacing: '-0.01em',
+          }}
+        >
           {title}
         </h2>
         {subtitle && (
-          <p style={{ marginTop: 'var(--space-1)', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-hand)',
+              marginTop: 'var(--space-1)',
+              color: 'var(--color-ink-light)',
+              fontSize: '1rem',
+              fontWeight: 600,
+            }}
+          >
             {subtitle}
           </p>
         )}

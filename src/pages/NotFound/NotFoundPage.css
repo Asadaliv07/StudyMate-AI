@@ -1,10 +1,13 @@
+/* ==========================================================================
+   404 Page Styles — Doodle Sketchbook Theme
+   ========================================================================== */
+
 .notfound-root {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-12) 0;
-  background: radial-gradient(circle at 50% 30%, rgba(124, 58, 237, 0.05) 0%, transparent 60%);
 }
 
 .notfound-container {
@@ -16,14 +19,27 @@
   max-width: 580px;
   width: 100%;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
+  border: 2.5px solid var(--color-ink);
+  border-radius: var(--radius-doodle);
   padding: var(--space-10) var(--space-8);
   text-align: center;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-doodle);
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.notfound-card::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  width: 90px;
+  height: 22px;
+  background: rgba(255, 230, 109, 0.7);
+  border: 1px dashed rgba(30, 32, 34, 0.4);
 }
 
 .notfound-badge {
@@ -31,40 +47,45 @@
 }
 
 .notfound-icon-wrapper {
-  width: 90px;
-  height: 90px;
-  border-radius: var(--radius-2xl);
-  background: var(--color-violet-50);
-  border: 1px solid var(--color-violet-100);
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: var(--color-highlighter-yellow);
+  border: 2px solid var(--color-ink);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-6);
+  box-shadow: 2px 2px 0px var(--color-ink);
 }
 
 .notfound-icon {
-  color: var(--color-violet-600);
-  animation: floatIcon 3s ease-in-out infinite;
+  color: var(--color-ink);
+  animation: floatDoodleIcon 3s ease-in-out infinite;
 }
 
-@keyframes floatIcon {
+@keyframes floatDoodleIcon {
   0%, 100% {
-    transform: rotate(0deg);
+    transform: rotate(-3deg) translateY(0);
   }
   50% {
-    transform: rotate(15deg);
+    transform: rotate(8deg) translateY(-4px);
   }
 }
 
 .notfound-title {
+  font-family: var(--font-heading);
   font-size: var(--font-size-3xl);
-  color: var(--color-navy-900);
+  font-weight: 800;
+  color: var(--color-ink);
   margin-bottom: var(--space-3);
 }
 
 .notfound-description {
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-ink-light);
   line-height: 1.6;
   margin-bottom: var(--space-8);
 }
@@ -78,16 +99,17 @@
 }
 
 .notfound-suggestions {
-  border-top: 1px solid var(--color-border);
+  border-top: 2px dashed rgba(30, 32, 34, 0.2);
   padding-top: var(--space-6);
   width: 100%;
 }
 
 .suggestions-label {
   display: block;
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  color: var(--color-text-muted);
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-ink-light);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-3);
@@ -101,19 +123,22 @@
 }
 
 .suggestion-pill {
-  padding: 0.35rem 0.75rem;
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  border-radius: var(--radius-full);
-  background-color: var(--color-bg-subtle);
-  color: var(--color-navy-800);
-  border: 1px solid var(--color-border);
+  padding: 0.35rem 0.85rem;
+  font-family: var(--font-hand);
+  font-size: 0.85rem;
+  font-weight: 800;
+  border-radius: var(--radius-doodle);
+  background-color: var(--color-paper-warm);
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-ink);
+  box-shadow: 1.5px 1.5px 0px var(--color-ink);
   text-decoration: none;
   transition: all var(--transition-fast);
 }
 
 .suggestion-pill:hover {
-  background-color: var(--color-violet-50);
-  border-color: var(--color-violet-200);
-  color: var(--color-violet-700);
+  background-color: var(--color-highlighter-yellow);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px var(--color-ink);
+  color: var(--color-ink);
 }
