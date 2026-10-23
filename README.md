@@ -3,6 +3,8 @@
 > **Your Intelligent Academic Co-Pilot**  
 > A browser-based educational SaaS platform engineered with React, TypeScript, and modern academic design principles.
 
+https://studymate-ai-delta-lovat.vercel.app/planner
+
 ---
 
 ## 🏛️ Overview & Design System
