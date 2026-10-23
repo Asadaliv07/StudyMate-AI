@@ -45,14 +45,19 @@ export const MAIN_NAV_ITEMS: NavItemConfig[] = [
   },
 ];
 
-export const MOCK_STUDENT: StudentProfile = {
-  id: 'usr_84928',
-  name: 'Ritika Sharma',
-  email: 'ritika.sharma@stanford.edu',
-  institution: 'Stanford University',
-  major: 'Computer Science & Cognitive AI',
+export const DEFAULT_STUDENT_PROFILE: StudentProfile = {
+  id: 'usr_student_active',
+  name: 'Asad Ali',
+  email: 'asad.ali@university.edu',
+  institution: 'Faculty of Engineering & Computer Science',
+  major: 'Computer Science & AI Systems',
+  academicYear: 'Final Year / Senior',
+  targetDailyHours: 4,
+  academicGoal: 'Master AI algorithms, machine learning models, and ace semester exams with top honors.',
   currentStreak: 14,
   studyHoursThisWeek: 26.5,
   totalCardsMastered: 480,
   aiCreditsRemaining: 1250,
 };
+
+export const MOCK_STUDENT: StudentProfile = DEFAULT_STUDENT_PROFILE;

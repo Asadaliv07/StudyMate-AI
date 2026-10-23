@@ -23,6 +23,9 @@ export interface StudentProfile {
   avatarUrl?: string;
   institution: string;
   major: string;
+  academicYear?: string;
+  targetDailyHours?: number;
+  academicGoal?: string;
   currentStreak: number;
   studyHoursThisWeek: number;
   totalCardsMastered: number;

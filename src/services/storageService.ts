@@ -20,7 +20,9 @@ import type {
   SubjectProgressBreakdown,
   TaskPriority,
   TaskStatus,
+  StudentProfile,
 } from '../types/index.ts';
+import { DEFAULT_STUDENT_PROFILE } from '../utils/constants.ts';
 
 // -----------------------------------------------------------------------------
 // Storage Keys
@@ -32,6 +34,7 @@ export const STORAGE_KEYS = {
   NOTES: 'studymate_saved_summaries',
   QUIZ_HISTORY: 'studymate_quiz_history',
   SHARED_NOTES: 'studymate_quiz_shared_notes',
+  PROFILE: 'studymate_user_profile',
 } as const;
 
 export const DATA_CHANGED_EVENT = 'studymate_data_changed';
@@ -508,3 +511,104 @@ export function getStorageDiagnostics() {
     ),
   };
 }
+
+// -----------------------------------------------------------------------------
+// 6. Student Profile & Account Management
+// -----------------------------------------------------------------------------
+
+/**
+ * Retrieves the persistent student profile, auto-initializing with defaults
+ * if not yet created.
+ */
+export function getUserProfile(): StudentProfile {
+  const stored = safeGet<StudentProfile | null>(STORAGE_KEYS.PROFILE, null);
+  if (!stored) {
+    return { ...DEFAULT_STUDENT_PROFILE };
+  }
+  return {
+    ...DEFAULT_STUDENT_PROFILE,
+    ...stored,
+  };
+}
+
+/**
+ * Saves or updates student profile account information.
+ * Dispatches a change event so all pages reflect changes reactively.
+ */
+export function saveUserProfile(updatedFields: Partial<StudentProfile>): StudentProfile {
+  const current = getUserProfile();
+  const merged: StudentProfile = {
+    ...current,
+    ...updatedFields,
+    id: current.id || `usr_${Date.now()}`,
+  };
+
+  safeSet(STORAGE_KEYS.PROFILE, merged);
+  notifyDataChanged('profile_updated');
+  return merged;
+}
+
+/**
+ * Resets student profile to default values.
+ */
+export function resetUserProfile(): StudentProfile {
+  const profile = { ...DEFAULT_STUDENT_PROFILE };
+  safeSet(STORAGE_KEYS.PROFILE, profile);
+  notifyDataChanged('profile_reset');
+  return profile;
+}
+
+/**
+ * Exports all user data (profile, study plans, notes, and quiz history)
+ * as a clean, formatted JSON string for download/backup.
+ */
+export function exportAllStudyData(): string {
+  const data = {
+    version: '1.0.0',
+    exportedAt: new Date().toISOString(),
+    profile: getUserProfile(),
+    plan: getSavedPlan(),
+    subjects: getPlannerSubjects(),
+    completedSessions: getCompletedSessionIds(),
+    notes: getSavedNotes(),
+    quizHistory: getQuizHistory(),
+  };
+  return JSON.stringify(data, null, 2);
+}
+
+/**
+ * Imports a previously exported StudyMate data JSON object.
+ */
+export function importAllStudyData(jsonString: string): { success: boolean; message: string } {
+  try {
+    const data = JSON.parse(jsonString);
+    if (!data || typeof data !== 'object') {
+      return { success: false, message: 'Invalid file format: Expected a JSON object.' };
+    }
+
+    if (data.profile && typeof data.profile === 'object') {
+      safeSet(STORAGE_KEYS.PROFILE, data.profile);
+    }
+    if (data.plan && typeof data.plan === 'object') {
+      safeSet(STORAGE_KEYS.PLAN, data.plan);
+    }
+    if (Array.isArray(data.subjects)) {
+      safeSet(STORAGE_KEYS.SUBJECTS, data.subjects);
+    }
+    if (Array.isArray(data.completedSessions)) {
+      safeSet(STORAGE_KEYS.COMPLETED_SESSIONS, data.completedSessions);
+    }
+    if (Array.isArray(data.notes)) {
+      safeSet(STORAGE_KEYS.NOTES, data.notes);
+    }
+    if (Array.isArray(data.quizHistory)) {
+      safeSet(STORAGE_KEYS.QUIZ_HISTORY, data.quizHistory);
+    }
+
+    notifyDataChanged('data_imported');
+    return { success: true, message: 'StudyMate workspace restored successfully!' };
+  } catch (err) {
+    return { success: false, message: `Failed to import data: ${(err as Error).message}` };
+  }
+}
+

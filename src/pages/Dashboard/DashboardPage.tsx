@@ -14,6 +14,7 @@ import {
   Trash2,
   ShieldCheck,
   AlertTriangle,
+  User,
 } from 'lucide-react';
 import { StatCard } from '../../components/common/StatCard';
 import { Card } from '../../components/common/Card';
@@ -22,6 +23,7 @@ import { Badge } from '../../components/common/Badge';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { Modal } from '../../components/common/Modal';
 import { EmptyState } from '../../components/common/EmptyState';
+import { ProfileModal } from '../../components/common/ProfileModal';
 import {
   getAggregatedStatistics,
   getActiveStudyTasks,
@@ -30,6 +32,7 @@ import {
   toggleSessionCompleted,
   clearAllUserData,
   hasAnyUserData,
+  getUserProfile,
 } from '../../services/storageService';
 import { formatDuration, formatDate, getPriorityBadgeColor } from '../../utils/formatters';
 import type {
@@ -37,6 +40,7 @@ import type {
   StructuredSummary,
   CompletedQuizResult,
   UserAggregatedStats,
+  StudentProfile,
 } from '../../types';
 import './DashboardPage.css';
 
@@ -46,6 +50,7 @@ export const DashboardPage: React.FC = () => {
   // ---------------------------------------------------------------------------
   // Central Persistent Data State (Real data only, zero hardcoded numbers)
   // ---------------------------------------------------------------------------
+  const [profile, setProfile] = useState<StudentProfile>(getUserProfile);
   const [stats, setStats] = useState<UserAggregatedStats>(getAggregatedStatistics);
   const [tasks, setTasks] = useState<StudyTask[]>(getActiveStudyTasks);
   const [notes, setNotes] = useState<StructuredSummary[]>(getSavedNotes);
@@ -55,11 +60,13 @@ export const DashboardPage: React.FC = () => {
   // Filter state for tasks
   const [taskFilter, setTaskFilter] = useState<'all' | 'in_progress' | 'completed' | 'urgent'>('all');
 
-  // Clear data confirmation modal
+  // Modals
   const [isClearModalOpen, setIsClearModalOpen] = useState(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   // Sync state with storage changes across tabs & in-page updates
   const refreshAllData = useCallback(() => {
+    setProfile(getUserProfile());
     setStats(getAggregatedStatistics());
     setTasks(getActiveStudyTasks());
     setNotes(getSavedNotes());
@@ -110,16 +117,31 @@ export const DashboardPage: React.FC = () => {
           <div className="dashboard-welcome">
             <div className="welcome-tag">
               <Badge variant="violet" icon={<Sparkles size={13} />}>
-                Local Academic Workspace • Browser Persistent
+                {profile.institution || 'Local Academic Workspace'} • Browser Persistent
               </Badge>
             </div>
-            <h1 className="welcome-name">Study Dashboard</h1>
+            <h1 className="welcome-name">
+              Welcome back, {profile.name || 'Scholar'} 🎓
+            </h1>
             <p className="welcome-sub">
-              Real-time progress aggregated directly from your active study plan, notes library, and quiz evaluations.
+              {profile.major ? `${profile.major} • ` : ''}Real-time progress aggregated directly from your active study plan, notes library, and quiz evaluations.
             </p>
+            {profile.academicGoal && (
+              <div style={{ marginTop: '0.5rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', background: '#FFF9E6', border: '1.5px dashed #1E2022', borderRadius: '10px', padding: '0.25rem 0.65rem', fontSize: '0.88rem', fontFamily: 'var(--font-doodle)', color: '#1E2022' }}>
+                <span>🎯 Goal: {profile.academicGoal}</span>
+              </div>
+            )}
           </div>
 
           <div className="dashboard-quick-actions">
+            <Button
+              variant="outline"
+              size="sm"
+              icon={<User size={15} />}
+              onClick={() => setIsProfileModalOpen(true)}
+            >
+              Edit Profile
+            </Button>
             <Link to="/planner">
               <Button variant="accent" size="sm" icon={<Plus size={15} />}>
                 {stats.activePlansCount > 0 ? 'Manage Plan' : 'Create Study Plan'}
@@ -505,6 +527,13 @@ export const DashboardPage: React.FC = () => {
           </div>
         </div>
       </Modal>
+
+      {/* Modal: Edit Student Profile & Preferences */}
+      <ProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        onProfileUpdated={(updated) => setProfile(updated)}
+      />
     </div>
   );
 };

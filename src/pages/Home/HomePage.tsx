@@ -20,6 +20,7 @@ import {
 import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
 import { Card } from '../../components/common/Card';
+import { ProfileModal } from '../../components/common/ProfileModal';
 import {
   DoodlePencil,
   DoodleArrow,
@@ -27,7 +28,8 @@ import {
   DoodleStar,
   DoodleCoffee,
 } from '../../components/common/DoodleIcons';
-import { MOCK_STUDENT } from '../../utils/constants';
+import { getUserProfile } from '../../services/storageService';
+import type { StudentProfile } from '../../types';
 import './HomePage.css';
 
 interface FAQItem {
@@ -76,8 +78,28 @@ const FAQ_ITEMS: FAQItem[] = [
 ];
 
 export const HomePage: React.FC = () => {
+  const [profile, setProfile] = useState<StudentProfile>(getUserProfile);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'planner' | 'summarizer' | 'quiz' | 'progress'>('planner');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  React.useEffect(() => {
+    const handleStorageUpdate = () => {
+      setProfile(getUserProfile());
+    };
+    window.addEventListener('studymate_data_changed', handleStorageUpdate);
+    window.addEventListener('storage', handleStorageUpdate);
+    return () => {
+      window.removeEventListener('studymate_data_changed', handleStorageUpdate);
+      window.removeEventListener('storage', handleStorageUpdate);
+    };
+  }, []);
+
+  const getInitials = (name: string): string => {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  };
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -143,16 +165,21 @@ export const HomePage: React.FC = () => {
             <Card variant="navy" className="hero-dashboard-preview">
               {/* Cute Washi Tape on Top */}
               <div className="washi-tape" />
-              <div className="preview-header">
+              <div
+                className="preview-header"
+                style={{ cursor: 'pointer' }}
+                onClick={() => setIsProfileModalOpen(true)}
+                title="Click to customize your student identity"
+              >
                 <div className="preview-student">
-                  <div className="preview-avatar">RS</div>
+                  <div className="preview-avatar">{getInitials(profile.name)}</div>
                   <div>
-                    <div className="preview-name">{MOCK_STUDENT.name}</div>
-                    <div className="preview-major">{MOCK_STUDENT.major}</div>
+                    <div className="preview-name">{profile.name}</div>
+                    <div className="preview-major">{profile.major || 'Academic Scholar'}</div>
                   </div>
                 </div>
                 <Badge variant="emerald" icon={<Zap size={12} />}>
-                  14 Day Streak
+                  {profile.currentStreak || 14} Day Streak
                 </Badge>
               </div>
 
@@ -588,6 +615,13 @@ export const HomePage: React.FC = () => {
           </Card>
         </div>
       </section>
+
+      {/* Modal: Edit Student Profile & Preferences */}
+      <ProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        onProfileUpdated={(updated) => setProfile(updated)}
+      />
     </div>
   );
 };

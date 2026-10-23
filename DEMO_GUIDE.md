@@ -2,7 +2,7 @@
 
 **College Mini-Project Title:** *AI-Powered Personalized Study Planner and Quiz Generator*  
 **Academic Degree / Year:** Undergraduate Computer Science Mini-Project  
-**Author / Presenter:** Ritika Shaikh  
+**Author / Presenter:** Asad Ali & StudyMate Engineering Team  
 
 ---
 

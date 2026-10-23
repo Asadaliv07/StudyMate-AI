@@ -27,12 +27,14 @@ import {
   getQuizHistory,
   clearAllUserData,
   hasAnyUserData,
+  getUserProfile,
 } from '../../services/storageService';
 import { formatDuration, formatDate } from '../../utils/formatters';
 import type {
   UserAggregatedStats,
   StudyTask,
   CompletedQuizResult,
+  StudentProfile,
 } from '../../types';
 import './ProgressPage.css';
 
@@ -40,6 +42,7 @@ export const ProgressPage: React.FC = () => {
   // ---------------------------------------------------------------------------
   // Central Persistent Data State (Real data only, zero hardcoded numbers)
   // ---------------------------------------------------------------------------
+  const [profile, setProfile] = useState<StudentProfile>(getUserProfile);
   const [stats, setStats] = useState<UserAggregatedStats>(getAggregatedStatistics);
   const [tasks, setTasks] = useState<StudyTask[]>(getActiveStudyTasks);
   const [quizHistory, setQuizHistory] = useState<CompletedQuizResult[]>(getQuizHistory);
@@ -50,6 +53,7 @@ export const ProgressPage: React.FC = () => {
 
   // Sync state with storage changes across tabs & in-page updates
   const refreshAllData = useCallback(() => {
+    setProfile(getUserProfile());
     setStats(getAggregatedStatistics());
     setTasks(getActiveStudyTasks());
     setQuizHistory(getQuizHistory());
@@ -91,7 +95,7 @@ export const ProgressPage: React.FC = () => {
             </Badge>
             <h1 className="page-heading">Progress &amp; Mastery Tracking</h1>
             <p className="page-sub">
-              Empirical metrics calculated from your real study plan tasks, active recall quizzes, and lecture notes.
+              Empirical metrics calculated for {profile.name} ({profile.major || 'Active Student'}) from your real study plan tasks, active recall quizzes, and lecture notes.
             </p>
           </div>
         </div>

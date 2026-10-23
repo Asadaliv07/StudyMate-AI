@@ -5,7 +5,6 @@ import type {
   ProgressOverview,
   StudentProfile,
 } from '../types';
-import { MOCK_STUDENT } from '../utils/constants';
 
 export const initialTasks: StudyTask[] = [
   {
@@ -193,13 +192,15 @@ import {
   getSavedNotes,
   getQuizHistory,
   getAggregatedStatistics,
+  getUserProfile,
 } from './storageService';
 
 export const studyService = {
   getStudentProfile: async (): Promise<StudentProfile> => {
     const stats = getAggregatedStatistics();
+    const profile = getUserProfile();
     return {
-      ...MOCK_STUDENT,
+      ...profile,
       totalCardsMastered: stats.completedTasksCount * 4,
       studyHoursThisWeek: Math.round(
         stats.subjectBreakdown.reduce((acc, s) => acc + s.hoursInvested, 0) * 10
