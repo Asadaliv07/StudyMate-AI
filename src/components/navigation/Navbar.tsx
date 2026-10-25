@@ -109,44 +109,31 @@ export const Navbar: React.FC = () => {
               <span>{profile.currentStreak || 14}d<span className="streak-label"> streak</span></span>
             </div>
 
-            {location.pathname === '/' ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <button
-                  type="button"
-                  className="student-profile-badge"
-                  onClick={() => setIsProfileModalOpen(true)}
-                  title={`Account: ${profile.name} - Click to customize`}
-                  aria-label="Edit student profile"
-                >
-                  <div className="student-avatar">
-                    {getInitials(profile.name)}
-                  </div>
-                  <div className="student-info">
-                    <span className="student-name">{profile.name}</span>
-                    <span className="student-institution">{profile.institution || 'My Account'}</span>
-                  </div>
-                </button>
-                <Link to="/dashboard" className="btn btn-primary btn-sm">
-                  <Sparkles size={14} />
-                  <span>Enter Workspace</span>
-                </Link>
+            <button
+              type="button"
+              className="student-profile-badge"
+              onClick={() => setIsProfileModalOpen(true)}
+              title={`Account: ${profile.name}${profile.institution ? ` (${profile.institution})` : ''} - Click to customize`}
+              aria-label="Edit student profile"
+            >
+              <div className="student-avatar">
+                {getInitials(profile.name)}
               </div>
-            ) : (
-              <button
-                type="button"
-                className="student-profile-badge"
-                onClick={() => setIsProfileModalOpen(true)}
-                title={`Account: ${profile.name} (${profile.email}) - Click to customize`}
-                aria-label="Edit student profile"
+              <div className="student-info">
+                <span className="student-name">{profile.name}</span>
+                <span className="student-institution">{profile.institution || 'My Account'}</span>
+              </div>
+            </button>
+
+            {location.pathname === '/' && (
+              <Link
+                to="/dashboard"
+                className="btn btn-primary btn-sm navbar-workspace-btn"
+                title="Enter Study Workspace"
               >
-                <div className="student-avatar">
-                  {getInitials(profile.name)}
-                </div>
-                <div className="student-info">
-                  <span className="student-name">{profile.name}</span>
-                  <span className="student-institution">{profile.institution || 'My Account'}</span>
-                </div>
-              </button>
+                <Sparkles size={14} />
+                <span className="workspace-btn-text">Enter Workspace</span>
+              </Link>
             )}
 
             {/* Mobile Hamburger Toggle */}

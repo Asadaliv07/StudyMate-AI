@@ -233,8 +233,92 @@
   box-shadow: 2px 2px 0px var(--color-ink);
 }
 
-/* Responsive Navbar for All Aspect Ratios */
-@media (max-width: 1024px) {
+/* Responsive Navbar for All Viewports and Aspect Ratios */
+
+/* 1. Large Laptops & Standard Desktop (1181px to 1420px) */
+/* Prevents horizontal overflow while keeping desktop navigation visible */
+@media (max-width: 1420px) {
+  .navbar-container {
+    padding: 0 var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .brand-title {
+    font-size: 1.45rem;
+  }
+
+  .brand-edition {
+    display: none;
+  }
+
+  .navbar-nav {
+    gap: 4px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.35rem 0.65rem;
+    gap: 6px;
+  }
+
+  .nav-link-badge {
+    font-size: 0.7rem;
+    padding: 0.05rem 0.35rem;
+  }
+
+  .streak-indicator {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.95rem;
+  }
+
+  .streak-label {
+    display: none;
+  }
+
+  .student-profile-badge {
+    padding: 0.3rem 0.55rem;
+  }
+
+  .student-institution {
+    display: none;
+  }
+
+  .navbar-actions {
+    gap: var(--space-2);
+  }
+
+  .navbar-workspace-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 2. Narrow Laptops & Compact Desktop (1181px to 1280px) */
+@media (max-width: 1280px) {
+  .nav-link {
+    font-size: 0.92rem;
+    padding: 0.3rem 0.45rem;
+    gap: 4px;
+  }
+
+  .nav-link-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .navbar-workspace-btn .workspace-btn-text {
+    display: none;
+  }
+
+  .navbar-workspace-btn {
+    padding: 0.45rem;
+    border-radius: 10px;
+  }
+}
+
+/* 3. Tablets Landscape, Split Screen & Medium Screens (<= 1180px) */
+/* Transition cleanly to mobile drawer so nav links and actions never collide */
+@media (max-width: 1180px) {
   .navbar-nav {
     display: none;
   }
@@ -245,12 +329,41 @@
     justify-content: center;
   }
 
-  .student-profile-badge {
+  .navbar-workspace-btn {
+    display: none;
+  }
+
+  .student-institution {
     display: none;
   }
 }
 
-/* Landscape Mobile & Low-Height Aspect Ratios (< 550px height) */
+/* 4. Tablets Portrait & Mobile (< 768px) */
+@media (max-width: 768px) {
+  .brand-title {
+    font-size: 1.35rem;
+  }
+
+  .brand-icon-box {
+    width: 36px;
+    height: 36px;
+  }
+
+  .student-info {
+    display: none;
+  }
+
+  .student-profile-badge {
+    padding: 3px;
+    border-radius: 10px;
+  }
+
+  .streak-label {
+    display: none;
+  }
+}
+
+/* 5. Landscape Mobile & Low-Height Aspect Ratios (< 550px height) */
 @media (max-height: 550px) {
   .navbar-root {
     height: var(--header-height-compact, 56px);
@@ -269,12 +382,15 @@
     padding: 0.25rem 0.5rem;
     font-size: 0.9rem;
   }
+  .navbar-workspace-btn {
+    display: none;
+  }
 }
 
-/* Narrow Portrait Mobile Aspect Ratios (Galaxy Z Fold, iPhone Mini, <= 440px) */
+/* 6. Narrow Portrait Mobile Aspect Ratios (Galaxy Z Fold, iPhone Mini, <= 440px) */
 @media (max-width: 440px) {
   .navbar-container {
-    padding: 0 max(var(--space-3), var(--safe-left));
+    padding: 0 max(var(--space-2), var(--safe-left));
     gap: var(--space-2);
   }
 
@@ -283,12 +399,12 @@
   }
 
   .brand-title {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
 
   .brand-icon-box {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
   }
 
   .streak-label {
@@ -296,17 +412,18 @@
   }
 
   .streak-indicator {
-    padding: 0.25rem 0.55rem;
-    font-size: 0.9rem;
+    padding: 0.2rem 0.45rem;
+    font-size: 0.85rem;
   }
 
-  .navbar-actions .btn-sm span {
-    display: none;
+  .student-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.85rem;
   }
 
-  .navbar-actions .btn-sm {
-    padding: 0.4rem;
-    border-radius: 8px;
+  .mobile-toggle-btn {
+    padding: 0.35rem;
   }
 }
 

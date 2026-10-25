@@ -65,7 +65,20 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           </p>
         )}
       </div>
-      {action && <div style={{ alignSelf: align === 'center' ? 'center' : 'flex-start' }}>{action}</div>}
+      {action && (
+        <div
+          className="section-header-action"
+          style={{
+            alignSelf: align === 'center' ? 'center' : 'flex-start',
+            maxWidth: '100%',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 'var(--space-2)',
+          }}
+        >
+          {action}
+        </div>
+      )}
     </div>
   );
 };

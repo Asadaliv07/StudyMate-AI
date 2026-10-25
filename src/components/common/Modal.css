@@ -99,6 +99,7 @@
   background-color: #FAF7EE;
   border-top: 2px dashed var(--color-ink);
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 /* Landscape Mobile & Low-Height Aspect Ratios (< 550px height) */
