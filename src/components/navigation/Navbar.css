@@ -233,7 +233,7 @@
   box-shadow: 2px 2px 0px var(--color-ink);
 }
 
-/* Responsive Navbar */
+/* Responsive Navbar for All Aspect Ratios */
 @media (max-width: 1024px) {
   .navbar-nav {
     display: none;
@@ -250,30 +250,93 @@
   }
 }
 
-/* Mobile Menu Drawer */
+/* Landscape Mobile & Low-Height Aspect Ratios (< 550px height) */
+@media (max-height: 550px) {
+  .navbar-root {
+    height: var(--header-height-compact, 56px);
+  }
+  .brand-icon-box {
+    width: 32px;
+    height: 32px;
+  }
+  .brand-title {
+    font-size: 1.3rem;
+  }
+  .brand-edition {
+    display: none;
+  }
+  .streak-indicator {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Narrow Portrait Mobile Aspect Ratios (Galaxy Z Fold, iPhone Mini, <= 440px) */
+@media (max-width: 440px) {
+  .navbar-container {
+    padding: 0 max(var(--space-3), var(--safe-left));
+    gap: var(--space-2);
+  }
+
+  .brand-edition {
+    display: none;
+  }
+
+  .brand-title {
+    font-size: 1.35rem;
+  }
+
+  .brand-icon-box {
+    width: 34px;
+    height: 34px;
+  }
+
+  .streak-label {
+    display: none;
+  }
+
+  .streak-indicator {
+    padding: 0.25rem 0.55rem;
+    font-size: 0.9rem;
+  }
+
+  .navbar-actions .btn-sm span {
+    display: none;
+  }
+
+  .navbar-actions .btn-sm {
+    padding: 0.4rem;
+    border-radius: 8px;
+  }
+}
+
+/* Mobile Menu Drawer with Safe-Area & Viewport Height Awareness */
 .mobile-menu-backdrop {
   position: fixed;
   inset: 0;
   background-color: rgba(30, 32, 34, 0.45);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: var(--z-modal-backdrop);
   display: flex;
   justify-content: flex-end;
 }
 
 .mobile-menu-drawer {
-  width: 85%;
-  max-width: 340px;
-  height: 100%;
+  width: min(85vw, 340px);
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   background-color: #FAF7EE;
   border-left: 3px solid var(--color-ink);
   box-shadow: -6px 0 0px var(--color-ink);
   display: flex;
   flex-direction: column;
-  padding: var(--space-6);
+  padding: max(var(--space-6), var(--safe-top)) max(var(--space-6), var(--safe-right)) max(var(--space-6), var(--safe-bottom)) var(--space-6);
   animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   background-image: radial-gradient(rgba(30, 32, 34, 0.08) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
+  overflow-y: auto;
 }
 
 @keyframes slideInRight {
@@ -291,6 +354,7 @@
   justify-content: space-between;
   padding-bottom: var(--space-4);
   border-bottom: 2px dashed var(--color-ink);
+  flex-shrink: 0;
 }
 
 .mobile-menu-title {
@@ -317,6 +381,26 @@
   margin-top: var(--space-4);
   flex: 1;
   overflow-y: auto;
+}
+
+/* In short landscape mode, ensure nav list and footer scroll comfortably */
+@media (max-height: 550px) {
+  .mobile-menu-drawer {
+    padding: var(--space-3) var(--space-4);
+  }
+  .mobile-nav-list {
+    flex: none;
+    overflow-y: visible;
+  }
+  .mobile-nav-link {
+    padding: var(--space-2);
+  }
+  .mobile-nav-label {
+    font-size: 1.1rem;
+  }
+  .mobile-drawer-footer {
+    margin-top: var(--space-3);
+  }
 }
 
 .mobile-nav-link {
@@ -372,6 +456,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  flex-shrink: 0;
 }
 
 .mobile-streak {

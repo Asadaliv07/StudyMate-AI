@@ -860,19 +860,44 @@
   justify-content: center;
 }
 
-/* Responsiveness */
+/* ==========================================================================
+   Responsiveness & Aspect Ratio Adaptations
+   ========================================================================== */
+
+/* 1. Ultrawide Monitors (21:9, 32:9) */
+@media (min-aspect-ratio: 21/9) {
+  .hero-container,
+  .showcase-pane {
+    max-width: var(--layout-ultrawide-width);
+  }
+}
+
+/* 2. Tablet Transverse & Small Laptops (1024px and below) */
 @media (max-width: 1024px) {
   .hero-container {
     grid-template-columns: 1fr;
+    gap: var(--space-8);
   }
   .showcase-pane {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
   .workflow-steps-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
+/* 3. Foldables Unfolded & Square Screens (4:3, 1:1, 5:4) */
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
+  .workflow-steps-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .showcase-pane {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4. Medium Screens / Portrait Tablets (768px and below) */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.25rem;
@@ -888,8 +913,57 @@
   .showcase-tabs {
     width: 100%;
     overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
   .workflow-steps-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* 5. Narrow Portrait Mobile (Folded devices, iPhone Mini, <= 440px) */
+@media (max-width: 440px) {
+  .hero-title {
+    font-size: clamp(1.75rem, 7vw, 2.15rem);
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .hero-cta-group button,
+  .hero-cta-group a {
+    width: 100%;
+  }
+  .preview-stats-row {
+    gap: 4px;
+    padding: var(--space-2);
+  }
+  .hero-social-proof {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+/* 6. Landscape Mobile / Short Viewport (< 550px height) */
+@media (max-height: 550px) {
+  .hero-section {
+    padding: var(--space-8) 0 var(--space-10);
+  }
+  .hero-title {
+    font-size: clamp(1.65rem, 5vw, 2.25rem);
+    margin-bottom: var(--space-3);
+  }
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: var(--space-4);
+  }
+  .hero-dashboard-preview {
+    animation: none;
+  }
+  .how-it-works-section,
+  .features-section,
+  .testimonials-section,
+  .faq-section {
+    padding: var(--space-8) 0;
   }
 }

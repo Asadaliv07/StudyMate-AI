@@ -34,7 +34,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         flexWrap: 'wrap',
       }}
     >
-      <div style={{ maxWidth: align === 'center' ? '700px' : 'none' }}>
+      <div style={{ maxWidth: align === 'center' ? '700px' : 'none', minWidth: 0 }}>
         {badgeText && (
           <div style={{ marginBottom: 'var(--space-2)' }}>
             <Badge variant={badgeVariant}>{badgeText}</Badge>

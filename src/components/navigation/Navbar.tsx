@@ -106,7 +106,7 @@ export const Navbar: React.FC = () => {
           <div className="navbar-actions">
             <div className="streak-indicator" title="Current Daily Study Streak">
               <Flame size={16} className="streak-icon" />
-              <span>{profile.currentStreak || 14}d streak</span>
+              <span>{profile.currentStreak || 14}d<span className="streak-label"> streak</span></span>
             </div>
 
             {location.pathname === '/' ? (

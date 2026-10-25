@@ -540,8 +540,30 @@
   margin: 0;
 }
 
-/* Responsiveness */
+/* ==========================================================================
+   Responsiveness & Aspect Ratio Adaptations
+   ========================================================================== */
+
+/* 1. Ultrawide Monitors (21:9, 32:9) */
+@media (min-aspect-ratio: 21/9) {
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 2. Tablets & Medium Screens (1024px and below) */
 @media (max-width: 1024px) {
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* 3. Foldables Unfolded & Square Screens (4:3, 1:1, 5:4) */
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
   .dashboard-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -550,6 +572,7 @@
   }
 }
 
+/* 4. Mobile Devices (640px and below) */
 @media (max-width: 640px) {
   .dashboard-stats-grid {
     grid-template-columns: 1fr;
@@ -557,15 +580,62 @@
   .dashboard-header-card {
     flex-direction: column;
     align-items: flex-start;
+    padding: var(--space-5);
   }
   .dashboard-quick-actions {
     width: 100%;
+    flex-direction: column;
   }
-  .dashboard-quick-actions button, .dashboard-quick-actions a {
-    flex: 1;
+  .dashboard-quick-actions button,
+  .dashboard-quick-actions a {
+    width: 100%;
+    justify-content: center;
   }
   .task-filter-pills {
     width: 100%;
     overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .task-top-meta {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  .task-bottom-meta {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}
+
+/* 5. Narrow Portrait Mobile (Folded devices, <= 440px) */
+@media (max-width: 440px) {
+  .dashboard-header-card {
+    padding: var(--space-4);
+  }
+  .welcome-name {
+    font-size: clamp(1.6rem, 5.5vw, 2rem);
+  }
+  .task-card {
+    padding: var(--space-4);
+  }
+  .task-row {
+    gap: var(--space-3);
+  }
+}
+
+/* 6. Landscape Mobile / Short Viewport (< 550px height) */
+@media (max-height: 550px) {
+  .dashboard-root {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+  .dashboard-header-card {
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  .welcome-name {
+    font-size: 1.75rem;
+  }
+  .dashboard-stats-grid {
+    margin-bottom: var(--space-4);
   }
 }

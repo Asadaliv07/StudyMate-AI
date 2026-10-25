@@ -85,7 +85,7 @@
 
 .modal-body {
   padding: var(--space-6);
-  max-height: calc(85vh - 140px);
+  max-height: calc(min(88dvh, 88vh) - 130px);
   overflow-y: auto;
   background-color: #FFFDF8;
 }
@@ -98,4 +98,64 @@
   padding: var(--space-4) var(--space-6);
   background-color: #FAF7EE;
   border-top: 2px dashed var(--color-ink);
+  flex-shrink: 0;
+}
+
+/* Landscape Mobile & Low-Height Aspect Ratios (< 550px height) */
+@media (max-height: 550px) {
+  .modal-backdrop {
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: max(var(--space-2), var(--safe-top)) max(var(--space-2), var(--safe-right)) max(var(--space-2), var(--safe-bottom)) max(var(--space-2), var(--safe-left));
+  }
+
+  .modal-container {
+    max-height: none;
+    margin: auto 0;
+  }
+
+  .modal-header {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+  }
+
+  .modal-body {
+    padding: var(--space-3) var(--space-4);
+    max-height: calc(100dvh - 120px);
+  }
+
+  .modal-footer {
+    padding: var(--space-2) var(--space-4);
+  }
+}
+
+/* Narrow Portrait Mobile (< 480px) */
+@media (max-width: 480px) {
+  .modal-backdrop {
+    padding: max(var(--space-2), var(--safe-top)) max(var(--space-2), var(--safe-right)) max(var(--space-2), var(--safe-bottom)) max(var(--space-2), var(--safe-left));
+  }
+
+  .modal-header {
+    padding: var(--space-4) var(--space-4) var(--space-3);
+  }
+
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-body {
+    padding: var(--space-4);
+  }
+
+  .modal-footer {
+    padding: var(--space-3) var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .modal-footer .btn {
+    flex: 1;
+  }
 }

@@ -44,7 +44,7 @@ export const StatCard: React.FC<StatCardProps> = ({
       />
 
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'var(--space-3)' }}>
-        <div>
+        <div style={{ minWidth: 0, flex: 1 }}>
           <span
             style={{
               fontFamily: 'var(--font-doodle)',

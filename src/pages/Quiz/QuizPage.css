@@ -718,6 +718,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 /* Question-by-Question Review List */
@@ -1075,14 +1076,34 @@
 }
 
 /* ==========================================================================
-   Responsive Breakpoints (Required by automated tests)
+   Responsive Breakpoints & Aspect Ratio Adaptations (Required by automated tests)
    ========================================================================== */
+
+/* 1. Ultrawide Monitors (21:9, 32:9) */
+@media (min-aspect-ratio: 21/9) {
+  .quiz-setup-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+/* 2. Tablet Transverse & Desktop */
 @media (max-width: 1024px) {
   .quiz-setup-grid {
     grid-template-columns: 1fr;
   }
 }
 
+/* 3. Foldables Unfolded & Square Screens (4:3, 1:1, 5:4) */
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
+  .quiz-setup-grid {
+    grid-template-columns: 1fr;
+  }
+  .results-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 4. Medium Screens / Portrait Tablets (Required by test suite) */
 @media (max-width: 768px) {
   .results-metrics-grid {
     grid-template-columns: 1fr;
@@ -1094,6 +1115,7 @@
   }
 }
 
+/* 5. Mobile Screens (Required by test suite) */
 @media (max-width: 640px) {
   .setup-card-header {
     flex-direction: column;
@@ -1115,5 +1137,56 @@
 
   .runner-nav-right {
     width: 100%;
+  }
+
+  .results-actions-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .results-actions-row button,
+  .results-actions-row a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 6. Narrow Mobile & Folded Screens (<= 440px) */
+@media (max-width: 440px) {
+  .runner-question-title {
+    font-size: clamp(1.25rem, 5vw, 1.65rem);
+  }
+
+  .runner-option-btn {
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .runner-steps-tracker {
+    gap: 4px;
+  }
+
+  .step-dot {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+}
+
+/* 7. Landscape Mobile / Short Viewports (< 550px height) */
+@media (max-height: 550px) {
+  .quiz-root {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+  .runner-card {
+    padding: var(--space-4);
+  }
+  .runner-question-title {
+    margin-bottom: var(--space-3);
+    font-size: 1.35rem;
+  }
+  .runner-options-grid {
+    margin-bottom: var(--space-4);
+    gap: var(--space-2);
   }
 }

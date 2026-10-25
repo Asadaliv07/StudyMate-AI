@@ -963,14 +963,32 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Responsive Layout Breakpoints (Required by automated tests)
+   Responsive Layout Breakpoints & Aspect Ratio Adaptations
+   (Required by automated tests: 1024px tablet, 640px mobile)
    --------------------------------------------------------------------------- */
+
+/* 1. Ultrawide Monitors (21:9, 32:9) */
+@media (min-aspect-ratio: 21/9) {
+  .summarizer-grid {
+    grid-template-columns: 1.1fr 1.4fr;
+  }
+}
+
+/* 2. Tablet Transverse & Desktop Breakpoint (Required by automated tests) */
 @media (max-width: 1024px) {
   .summarizer-grid {
     grid-template-columns: 1fr;
   }
 }
 
+/* 3. Foldables Unfolded & Square Screens (4:3, 1:1, 5:4) */
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
+  .summarizer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4. Mobile Breakpoint (Required by automated tests) */
 @media (max-width: 640px) {
   .form-row-2 {
     grid-template-columns: 1fr;
@@ -979,15 +997,52 @@
   .form-head-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-2);
   }
 
   .viewer-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-2);
   }
 
   .send-to-quiz-strip {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .send-to-quiz-strip button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 5. Narrow Portrait Mobile (Folded devices, <= 440px) */
+@media (max-width: 440px) {
+  .summarizer-form-card,
+  .viewer-card {
+    padding: var(--space-4);
+  }
+
+  .viewer-actions-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .viewer-actions-row button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 6. Landscape Mobile / Short Viewport (< 550px height) */
+@media (max-height: 550px) {
+  .summarizer-root {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+  .summarizer-form-card,
+  .viewer-card {
+    padding: var(--space-4);
   }
 }

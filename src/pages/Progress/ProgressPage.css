@@ -508,8 +508,30 @@
   margin-bottom: var(--space-2);
 }
 
-/* Responsive Breakpoints */
+/* ==========================================================================
+   Responsive Breakpoints & Aspect Ratio Adaptations
+   ========================================================================== */
+
+/* 1. Ultrawide Monitors (21:9, 32:9) */
+@media (min-aspect-ratio: 21/9) {
+  .progress-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 2. Tablet Transverse & Desktop Breakpoint */
 @media (max-width: 1024px) {
+  .progress-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .progress-main-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+/* 3. Foldables Unfolded & Square Screens (4:3, 1:1, 5:4) */
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
   .progress-kpi-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -518,13 +540,46 @@
   }
 }
 
+/* 4. Mobile Breakpoint */
 @media (max-width: 640px) {
   .progress-kpi-grid {
     grid-template-columns: 1fr;
   }
-  .completed-session-row, .quiz-history-row {
+  .completed-session-row,
+  .quiz-history-row {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-2);
+  }
+  .analytics-card {
+    padding: var(--space-5);
+  }
+}
+
+/* 5. Narrow Portrait Mobile (Folded devices, <= 440px) */
+@media (max-width: 440px) {
+  .analytics-card {
+    padding: var(--space-4);
+  }
+  .subject-progress-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .subject-progress-bar-wrap {
+    width: 100%;
+  }
+}
+
+/* 6. Landscape Mobile / Short Viewport (< 550px height) */
+@media (max-height: 550px) {
+  .progress-root {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+  .progress-kpi-grid {
+    margin-bottom: var(--space-4);
+  }
+  .analytics-card {
+    padding: var(--space-4);
   }
 }

@@ -1,7 +1,7 @@
 .footer-root {
   background-color: var(--color-surface);
   border-top: 2.5px solid var(--color-ink);
-  padding: var(--space-12) 0 var(--space-6);
+  padding: var(--space-12) 0 max(var(--space-6), var(--safe-bottom));
   margin-top: auto;
   background-image: radial-gradient(rgba(30, 32, 34, 0.06) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
@@ -170,6 +170,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 .footer-legal-item {
@@ -178,6 +179,7 @@
   color: var(--color-ink-light);
   cursor: pointer;
   transition: color var(--transition-fast);
+  padding: 2px 0;
 }
 
 .footer-legal-item:hover {
@@ -190,9 +192,16 @@
   }
 }
 
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 640px) {
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
   .footer-bottom {
     flex-direction: column;

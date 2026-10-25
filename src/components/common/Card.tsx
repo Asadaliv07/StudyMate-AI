@@ -21,15 +21,15 @@ export const Card: React.FC<CardProps> = ({
   
   const paddingStyles: Record<string, string> = {
     none: '0',
-    sm: 'var(--space-4)',
-    md: 'var(--space-6)',
-    lg: 'var(--space-8)',
+    sm: 'clamp(var(--space-3), 2.5vw, var(--space-4))',
+    md: 'clamp(var(--space-4), 3.5vw, var(--space-6))',
+    lg: 'clamp(var(--space-5), 4.5vw, var(--space-8))',
   };
 
   return (
     <div
       className={`card ${variantClass} ${interactiveClass} ${className}`.trim()}
-      style={{ padding: paddingStyles[padding] }}
+      style={{ padding: paddingStyles[padding], ...props.style }}
       {...props}
     >
       {children}

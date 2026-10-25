@@ -148,7 +148,7 @@
    ========================================================================== */
 .planner-subjects-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: var(--space-6);
 }
 
@@ -1138,14 +1138,31 @@
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   Responsive Breakpoints & Aspect Ratio Adaptations
    ========================================================================== */
+
+/* 1. Ultrawide Monitors (21:9, 32:9) */
+@media (min-aspect-ratio: 21/9) {
+  .planner-layout-grid {
+    grid-template-columns: 1.6fr 1fr;
+  }
+}
+
+/* 2. Tablets & Desktop Transverse */
 @media (max-width: 1024px) {
   .planner-layout-grid {
     grid-template-columns: 1fr;
   }
 }
 
+/* 3. Foldables Unfolded & Square Screens (4:3, 1:1, 5:4) */
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
+  .planner-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4. Medium Screens / Portrait Tablets */
 @media (max-width: 768px) {
   .planner-top-header {
     flex-direction: column;
@@ -1169,9 +1186,12 @@
   .feasibility-metrics-pills {
     width: 100%;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: var(--space-2);
   }
 }
 
+/* 5. Mobile Screens */
 @media (max-width: 640px) {
   .planner-subjects-cards-grid {
     grid-template-columns: 1fr;
@@ -1180,6 +1200,7 @@
   .day-card-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-2);
   }
 
   .session-row-item {
@@ -1190,5 +1211,46 @@
   .session-top-meta {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions button,
+  .header-actions a {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* 6. Narrow Mobile & Folded Screens (<= 440px) */
+@media (max-width: 440px) {
+  .header-actions {
+    flex-direction: column;
+  }
+
+  .header-actions button,
+  .header-actions a {
+    width: 100%;
+  }
+
+  .planner-subject-card {
+    padding: var(--space-4);
+  }
+
+  .feasibility-metrics-pills {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* 7. Landscape Mobile / Short Viewports (< 550px height) */
+@media (max-height: 550px) {
+  .planner-root {
+    padding: var(--space-4) 0 var(--space-8);
+  }
+  .planner-top-header {
+    margin-bottom: var(--space-4);
   }
 }

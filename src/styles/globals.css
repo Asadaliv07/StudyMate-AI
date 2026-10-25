@@ -18,13 +18,15 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--color-bg);
   /* Notebook paper subtle dot grid texture */
   background-image: radial-gradient(rgba(30, 32, 34, 0.08) 1.5px, transparent 1.5px);
@@ -33,12 +35,22 @@ body {
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
+  width: 100%;
+}
+
+/* Fluid, Responsive Media & Embedded Graphics */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 /* ==========================================================================
-   Typography Scale — Playful Hand-Lettered Display & Readable Body
+   Typography Scale — Fluid Hand-Lettered Display & Readable Body
+   Adapts smoothly across all aspect ratios (320px foldables to 4K ultrawide)
    ========================================================================== */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-doodle);
@@ -46,26 +58,32 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0.01em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 h1 {
-  font-size: 2.75rem;
+  font-size: clamp(2rem, 3.2vw + 1rem, 2.75rem);
   font-weight: 700;
 }
 
 h2 {
-  font-size: 2.15rem;
+  font-size: clamp(1.65rem, 2.4vw + 0.8rem, 2.15rem);
   font-weight: 700;
 }
 
 h3 {
-  font-size: 1.65rem;
+  font-size: clamp(1.35rem, 1.8vw + 0.6rem, 1.65rem);
   font-weight: 700;
 }
 
 h4 {
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 1.2vw + 0.5rem, 1.35rem);
   font-weight: 700;
+}
+
+p, span, li, label {
+  overflow-wrap: break-word;
 }
 
 p {
@@ -87,15 +105,15 @@ a:hover {
 }
 
 /* ==========================================================================
-   Hand-Drawn Layout Containers
+   Hand-Drawn Layout Containers with Safe-Area Insets & Aspect Adaptability
    ========================================================================== */
 .container {
   width: 100%;
   max-width: var(--layout-max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-6);
-  padding-right: var(--space-6);
+  padding-left: max(var(--space-6), var(--safe-left));
+  padding-right: max(var(--space-6), var(--safe-right));
 }
 
 .container-narrow {
@@ -103,8 +121,33 @@ a:hover {
   max-width: var(--layout-narrow-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-6);
-  padding-right: var(--space-6);
+  padding-left: max(var(--space-6), var(--safe-left));
+  padding-right: max(var(--space-6), var(--safe-right));
+}
+
+/* Aspect Ratio Utilities */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-photo {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.aspect-golden {
+  aspect-ratio: 1.618 / 1;
+}
+
+.aspect-wide {
+  aspect-ratio: 21 / 9;
 }
 
 /* ==========================================================================
@@ -448,10 +491,10 @@ textarea:focus {
   background-size: 100% 100%;
 }
 
-/* Grid Layouts */
+/* Grid Layouts with Defensive Minmax for Narrow Screens */
 .grid-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: var(--space-6);
 }
 
@@ -473,7 +516,18 @@ textarea:focus {
   gap: var(--space-6);
 }
 
-/* Responsive Media Queries */
+/* ==========================================================================
+   Aspect Ratio & Viewport Optimization Matrix
+   ========================================================================== */
+
+/* 1. Large Screen & Ultrawide Monitors (21:9, 32:9) */
+@media (min-aspect-ratio: 21/9) {
+  .container {
+    max-width: var(--layout-ultrawide-width);
+  }
+}
+
+/* 2. Tablet & Desktop Transverse (1024px and below) */
 @media (max-width: 1024px) {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
@@ -483,6 +537,17 @@ textarea:focus {
   }
 }
 
+/* 3. Foldables Unfolded & Square Screens (4:3, 1:1, 5:4) */
+@media (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) and (max-width: 1200px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 4. Medium Screens / Portrait Tablets (768px and below) */
 @media (max-width: 768px) {
   h1 {
     font-size: 2.15rem;
@@ -494,8 +559,47 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
   .container {
-    padding-left: var(--space-4);
-    padding-right: var(--space-4);
+    padding-left: max(var(--space-4), var(--safe-left));
+    padding-right: max(var(--space-4), var(--safe-right));
+  }
+}
+
+/* 5. Narrow Mobile & Folded Screens (480px and below, aspect-ratio < 1) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.85rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  .container {
+    padding-left: max(var(--space-3), var(--safe-left));
+    padding-right: max(var(--space-3), var(--safe-right));
+  }
+  .card {
+    padding: var(--space-4);
+  }
+}
+
+/* 6. Landscape Mobile / Short Viewport Heights (Aspect Ratio > 16:9, max-height: 550px) */
+@media (max-height: 550px) {
+  :root {
+    --header-height: var(--header-height-compact);
+  }
+  .container {
+    padding-top: var(--space-2);
+  }
+}
+
+/* 7. Touch Accessibility: Comfortable Tap Targets for Mobile Aspect Ratios */
+@media (pointer: coarse) {
+  .btn,
+  button:not(.btn-sm):not(.modal-close-btn),
+  .nav-link {
+    min-height: 44px;
   }
 }
 

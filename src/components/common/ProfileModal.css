@@ -79,6 +79,9 @@
   gap: 0.5rem;
   border-bottom: 2px solid #E8E5DF;
   padding-bottom: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-wrap: wrap;
 }
 
 .profile-tab-btn {
@@ -197,6 +200,21 @@
   padding-top: 0.75rem;
   border-top: 2px dashed #E8E5DF;
   margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .profile-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .profile-form-actions button {
+    width: 100%;
+  }
+  .profile-preview-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Backup & Portability */

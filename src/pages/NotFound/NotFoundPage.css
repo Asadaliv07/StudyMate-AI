@@ -142,3 +142,38 @@
   box-shadow: 2px 2px 0px var(--color-ink);
   color: var(--color-ink);
 }
+
+@media (max-width: 480px) {
+  .notfound-card {
+    padding: var(--space-6) var(--space-4);
+  }
+  .notfound-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .notfound-actions button,
+  .notfound-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-height: 550px) {
+  .notfound-root {
+    padding: var(--space-4) 0;
+  }
+  .notfound-card {
+    padding: var(--space-4);
+  }
+  .notfound-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: var(--space-3);
+  }
+  .notfound-title {
+    font-size: 1.75rem;
+  }
+  .notfound-description {
+    margin-bottom: var(--space-4);
+  }
+}
